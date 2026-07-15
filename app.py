@@ -36,12 +36,7 @@ st.caption(
 # ---------------------------------------------------------------------
 with st.sidebar:
     st.header("⚙️ Settings")
-    api_key_input = st.text_input(
-        "Groq API Key",
-        type="password",
-        value=get_api_key(),
-        help="Get a free API key at https://console.groq.com",
-    )
+    st.caption("Groq API key is read from Streamlit secrets or environment variables.")
     summary_style = st.selectbox("Summary style", ["concise", "detailed", "executive"])
     st.markdown("---")
     st.markdown("**Supported formats:** PDF, DOCX, XLSX, CSV, TXT")
@@ -50,6 +45,8 @@ with st.sidebar:
         for key in ["doc_text", "vector_store", "chat_history", "summary"]:
             st.session_state.pop(key, None)
         st.rerun()
+
+api_key_input = get_api_key()
 
 # ---------------------------------------------------------------------
 # Session state initialization
@@ -72,7 +69,7 @@ uploaded_file = st.file_uploader(
 
 if uploaded_file and st.button("🔍 Process Document", type="primary"):
     if not api_key_input:
-        st.error("Please enter your Groq API key in the sidebar (it's free — console.groq.com).")
+        st.error("Groq API key is missing. Configure GROQ_API_KEY in Streamlit secrets or your environment.")
     else:
         try:
             with st.spinner("Extracting text from document..."):
@@ -126,7 +123,7 @@ if st.session_state.summary:
     question = st.chat_input("Ask something about the document...")
     if question:
         if not api_key_input:
-            st.error("Please enter your Groq API key in the sidebar.")
+            st.error("Groq API key is missing. Configure GROQ_API_KEY in Streamlit secrets or your environment.")
         else:
             with st.chat_message("user"):
                 st.write(question)
