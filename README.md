@@ -124,6 +124,4 @@ Open http://localhost:8501
 - Export summary + chat transcript as PDF/DOCX
 - User authentication and saved chat history per user
 
-## License
 
-MIT
