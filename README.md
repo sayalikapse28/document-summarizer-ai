@@ -5,7 +5,7 @@ and instantly get an AI-generated summary, then ask unlimited follow-up
 questions answered using **Retrieval-Augmented Generation (RAG)** grounded
 in the document's actual content.
 
-**Live demo:** _add your deployed Streamlit link here_
+**Live demo:** https://document-summarizer-ai-mjtejtkr2jjrkfjqwv5lgf.streamlit.app/
 
 ## Features
 
